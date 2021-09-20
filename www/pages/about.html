@@ -1,0 +1,52 @@
+<template>
+<div class="page" data-name="settings">  
+  <div class="navbar">
+    <div class="navbar-bg"></div>
+    <div class="navbar-inner sliding">
+      <div class="left">
+        <a href="#" class="link back">
+          <i class="icon icon-back color-pink"></i>
+          <span class="if-not-md">Back</span>
+        </a>
+      </div>
+      <div class="title">変化グラフ</div>
+    </div>
+  </div>
+  <div class="block-title">Navigation</div>
+      <div class="list no-hairlines-md">
+      <ul>
+        <li>
+          <div class="item-title item-label" style="background-color:pink"><font size="5">体重変化グラフ</font></div>
+          <!-- graphを表示する領域  -->
+          <div id="graph" style="width:100%;height:200px;"></div>
+        </li>
+        <li>
+          <div class="item-title item-label" style="background-color:pink"><font size="5">体脂肪率変化グラフ</font></div>
+          <!-- graphを表示する領域  -->
+          <div id="graph2" style="width:100%;height:200px;"></div>
+        </li>
+      </ul>
+    </div>  
+</div>
+</template>
+<!-- 折れ線グラフ -->
+<script>
+  export default function (props, {$f7, $on, $onBeforeMount, $onMounted, $onBeforeUnmount, $onUnmounted }) {
+    $onMounted(() => {
+      const graph = document.getElementById('graph');
+       Plotly.plot( graph, [{
+         x:[1, 2, 3, 4, 5],
+         y:[52, 50, 49, 50, 48] }], {
+        margin: { t: 0 } 
+      });
+
+      const graph2 = document.getElementById('graph2');
+       Plotly.plot( graph2, [{
+         x:[1, 2, 3, 4, 5],
+         y:[24, 24, 23.8, 23.7, 23.6] }], {
+        margin: { t: 0 } 
+      });
+    });
+    return $render;
+  }
+</script>
